@@ -71,6 +71,7 @@
         android:id="@+id/spinner"
         android:layout_width="141dp"
         android:layout_height="27dp"
+        android:entries="@array/tipos_pelis_array"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.166"
