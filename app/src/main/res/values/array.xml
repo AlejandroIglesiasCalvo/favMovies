@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="tipos_pelis_array">
-        <item>Sin definir</item>
         <item>Acción</item>
         <item>Aventuras</item>
         <item>Dramáticas</item>
@@ -11,5 +10,6 @@
         <item>De guerra</item>
         <item>Comedias</item>
         <item>Románticas</item>
+        <item>Otro</item>
     </string-array>
 </resources>
