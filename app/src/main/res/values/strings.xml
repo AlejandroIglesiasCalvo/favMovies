@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">favMovies</string>
+    <string name="app_name">Mis pelis favoritas</string>
     <string name="String1">Título</string>
     <string name="OnCreate">On Create: me estoy creando</string>
     <string name="onStart">onStart: iniciando</string>
