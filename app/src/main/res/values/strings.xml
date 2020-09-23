@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">favMovies</string>
+    <string name="String1">Título</string>
+    <string name="OnCreate">On Create: me estoy creando</string>
+    <string name="onStart">onStart: iniciando</string>
+    <string name="onPause">onPause: app en pausa</string>
+    <string name="onRestart">on Restart: me reinicio</string>
+    <string name="onStop">on Stop: me pauso</string>
+    <string name="onDestroy">on Destroy: muerome</string>
+    <string name="onResume">on Resume: continuo funcionando</string>
+    <string name="introducirTitulo">Introducir título</string>
+    <string name="tArgumento">Argumento</string>
+    <string name="eSinopsis">Sinopsis de la pelicula</string>
+    <string name="tCategoria">Categoria</string>
+    <string name="eDuracion">Duracion</string>
+    <string name="eFecha">Fecha de la pelicula</string>
+    <string name="bGuardar">Guardar</string>
+</resources>
