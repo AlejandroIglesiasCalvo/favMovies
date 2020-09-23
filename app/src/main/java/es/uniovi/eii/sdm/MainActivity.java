@@ -5,16 +5,21 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
 
 public class MainActivity extends AppCompatActivity {
+    private Snackbar msgCreaCategoria;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //Toast.makeText(getApplicationContext(),getString(R.string.OnCreate), Toast.LENGTH_SHORT).show();
+
         Button btnGuardar = (Button) findViewById(R.id.button);
         btnGuardar.setOnClickListener((new View.OnClickListener() {
             @Override
@@ -25,7 +30,25 @@ public class MainActivity extends AppCompatActivity {
             }
         }));
 
+
+        ImageButton IB = (ImageButton) findViewById(R.id.imgBoton);
+        IB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Spinner spiner = (Spinner) findViewById(R.id.spinner);
+                if (spiner.getSelectedItemPosition() == 0) {
+                    msgCreaCategoria = Snackbar.make(findViewById(R.id.Layaut), R.string.msg_crear_nueva_categoria,
+                            Snackbar.LENGTH_LONG);
+                } else {
+                    msgCreaCategoria = Snackbar.make(findViewById(R.id.Layaut), R.string.msg_modif_categoria,
+                            Snackbar.LENGTH_LONG);
+                }
+            }
+        });
+        msgCreaCategoria.show();
     }
+
+
 
     /*  @Override
     protected void onStart() {
