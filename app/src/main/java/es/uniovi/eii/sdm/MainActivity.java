@@ -35,17 +35,24 @@ public class MainActivity extends AppCompatActivity {
         IB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Spinner spiner = (Spinner) findViewById(R.id.spinner);
-                if (spiner.getSelectedItemPosition() == 0) {
+                Spinner spinerCategorias = (Spinner) findViewById(R.id.spinner);
+                if (spinerCategorias.getSelectedItemPosition() == 0) {
                     msgCreaCategoria = Snackbar.make(findViewById(R.id.Layaut), R.string.msg_crear_nueva_categoria,
                             Snackbar.LENGTH_LONG);
                 } else {
                     msgCreaCategoria = Snackbar.make(findViewById(R.id.Layaut), R.string.msg_modif_categoria,
                             Snackbar.LENGTH_LONG);
                 }
+                msgCreaCategoria.setAction(R.string.strCancelar, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        msgCreaCategoria.dismiss();
+                    }
+                });
+                msgCreaCategoria.show();
             }
         });
-        msgCreaCategoria.show();
+
     }
 
 

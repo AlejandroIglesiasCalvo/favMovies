@@ -125,14 +125,14 @@
         android:id="@+id/imgBoton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:contentDescription="@string/intento_de_accion"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.609"
         app:layout_constraintStart_toEndOf="@+id/spinner"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2"
         app:layout_constraintVertical_bias="0.146"
-        app:srcCompat="@android:drawable/checkbox_on_background"
-        android:contentDescription="TODO" />
+        app:srcCompat="@android:drawable/checkbox_on_background" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

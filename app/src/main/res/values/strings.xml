@@ -16,6 +16,8 @@
     <string name="eFecha">Fecha de la pelicula</string>
     <string name="bGuardar">Guardar</string>
     <string name="msg_guardado">¡Guardado correctamente!</string>
-    <string name="msg_crear_nueva_categoria">Crear nueva categoria</string>
-    <string name="msg_modif_categoria">Modificar categoria existente</string>
+    <string name="msg_crear_nueva_categoria">Se va a crear una nueva categoría</string>
+    <string name="msg_modif_categoria">Se va a modificar la categoría seleccionada</string>
+    <string name="intento_de_accion">Intento de accion</string>
+    <string name="strCancelar">Cancelar</string>
 </resources>
