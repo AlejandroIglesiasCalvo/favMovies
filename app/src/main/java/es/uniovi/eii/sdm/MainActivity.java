@@ -3,8 +3,10 @@ package es.uniovi.eii.sdm;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -24,9 +26,15 @@ public class MainActivity extends AppCompatActivity {
         btnGuardar.setOnClickListener((new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Snackbar.make(findViewById(R.id.Layaut), R.string.msg_guardado,
-                        Snackbar.LENGTH_SHORT)
-                        .show();
+                if(ValidarCampos()){
+                    Snackbar.make(findViewById(R.id.Layaut), R.string.msg_guardado,
+                            Snackbar.LENGTH_SHORT)
+                            .show();
+                }else{
+                    Snackbar.make(findViewById(R.id.Layaut), R.string.msg_no_guardado,
+                            Snackbar.LENGTH_SHORT)
+                            .show();
+                }
             }
         }));
 
@@ -55,7 +63,21 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
+    boolean ValidarCampos(){
+      //Los objetos
+        EditText titulo, descripcion, duracion, fecha;
+        titulo = (EditText) findViewById(R.id.idTitulo);
+        descripcion= (EditText) findViewById(R.id.idDescripcion);
+        duracion=(EditText) findViewById(R.id.idDuracion);
+        fecha=(EditText) findViewById(R.id.idFecha);
+        //Los strings
+        String stitulo, sdescripcion, sduracion, sfecha;
+        stitulo = titulo.getText().toString();
+        sdescripcion=descripcion.getText().toString();
+        sduracion=duracion.getText().toString();
+        sfecha=fecha.getText().toString();
+        return !stitulo.isEmpty() && !sdescripcion.isEmpty() && !sduracion.isEmpty() && !sfecha.isEmpty();
+    }
 
     /*  @Override
     protected void onStart() {

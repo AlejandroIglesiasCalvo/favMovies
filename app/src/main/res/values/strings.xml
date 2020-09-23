@@ -16,6 +16,7 @@
     <string name="eFecha">Fecha de la pelicula</string>
     <string name="bGuardar">Guardar</string>
     <string name="msg_guardado">¡Guardado correctamente!</string>
+    <string name="msg_no_guardado">Campos no validos</string>
     <string name="msg_crear_nueva_categoria">Se va a crear una nueva categoría</string>
     <string name="msg_modif_categoria">Se va a modificar la categoría seleccionada</string>
     <string name="intento_de_accion">Intento de accion</string>
