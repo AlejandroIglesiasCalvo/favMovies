@@ -76,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
         sdescripcion=descripcion.getText().toString();
         sduracion=duracion.getText().toString();
         sfecha=fecha.getText().toString();
+        //Esto no es mas facil, pero vale
         return !stitulo.isEmpty() && !sdescripcion.isEmpty() && !sduracion.isEmpty() && !sfecha.isEmpty();
     }
 
