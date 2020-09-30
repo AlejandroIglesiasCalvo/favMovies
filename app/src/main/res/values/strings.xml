@@ -26,4 +26,6 @@
     <string name="descripcion_categorai">Descripcion de la categoria</string>
     <string name="ok">OK</string>
     <string name="Cancel">Cancel</string>
+    <string name="TituloCrearCategoria">Creacion de categoria</string>
+    <string name="TituloModificarCategoria">Modificacion de categoria</string>
 </resources>
