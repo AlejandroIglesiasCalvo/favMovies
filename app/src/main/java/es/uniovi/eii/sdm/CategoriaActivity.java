@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -31,7 +32,7 @@ public class CategoriaActivity extends AppCompatActivity {
         // Recuperamos referencia al botón
         Button btnOk = (Button) findViewById(R.id.btnOK);
         Button btnCancel = (Button) findViewById(R.id.btnCancelar);
-//cambiamos la etiqueta del titulo en funcion de si crea o modifica
+        //cambiamos la etiqueta del titulo en funcion de si crea o modifica
         if (posCategoria == 0) {
             textViewCrea.setText(R.string.TituloCrearCategoria);
         } else {
@@ -40,6 +41,25 @@ public class CategoriaActivity extends AppCompatActivity {
             editDescripcion.setText(categEntrada.getDescripcion());
             editNomCategoria.setEnabled(false);
         }
+
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setResult(RESULT_CANCELED);
+                finish();
+            }
+        });
+
+        btnOk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Categoria categSalida = new Categoria(editNomCategoria.getText().toString(), editDescripcion.getText().toString());
+                Intent intentResultado = new Intent();
+                intentResultado.putExtra(MainActivity.CATEGORIA_MODIFICADA, categSalida);
+                setResult(RESULT_OK, intentResultado);
+                finish();
+            }
+        });
 
     }
 }
