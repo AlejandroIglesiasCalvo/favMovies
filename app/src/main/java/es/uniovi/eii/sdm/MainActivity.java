@@ -31,6 +31,14 @@ public class MainActivity extends AppCompatActivity {
     private EditText editDuracion;
     private Snackbar msgCreaCategoria;
 
+    public static final String CATEGORIA_SELECCIONADA = "categoria_seleccionada";
+    public static final String CATEGORIA_MODIFICADA = "categoria_modificada";
+    public static final String POS_CATEGORIA_SELECCIONADA = "pos_categoria_seleccionada";
+
+    // identificador de activity
+    private static final int GESTION_CATEGORIA = 1;
+    Boolean creandoCategoria;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +46,8 @@ public class MainActivity extends AppCompatActivity {
         //Toast.makeText(getApplicationContext(),getString(R.string.OnCreate), Toast.LENGTH_SHORT).show();
 
         listaCategorias = new ArrayList<Categoria>();
-        listaCategorias.add(new Categoria("Accion", "pelicula de accion"));
+        listaCategorias.add(new Categoria("Accion", "pelicula de Accion"));
+        listaCategorias.add(new Categoria("Drama", "pelicula de Drama"));
 
         // Inicializa el spinner
         spinner = (Spinner) findViewById(R.id.spinner);
@@ -94,7 +103,14 @@ public class MainActivity extends AppCompatActivity {
 
     private void modificarCategoria() {
         Intent categoriaIntent = new Intent(MainActivity.this, CategoriaActivity.class);
-        startActivity(categoriaIntent);
+        //startActivity(categoriaIntent);
+        categoriaIntent.putExtra(POS_CATEGORIA_SELECCIONADA, spinner.getSelectedItemPosition());
+        creandoCategoria = true;
+        if (spinner.getSelectedItemPosition() > 0) {
+            creandoCategoria = false;
+            categoriaIntent.putExtra(CATEGORIA_SELECCIONADA, listaCategorias.get(spinner.getSelectedItemPosition() - 1));
+        }
+        startActivityForResult(categoriaIntent, GESTION_CATEGORIA);
     }
 
     boolean ValidarCampos() {
@@ -124,6 +140,18 @@ public class MainActivity extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
     }
+
+}
+
+
+
+
+
+
+
+
+
+
     /*  @Override
     protected void onStart() {
         super.onStart();
@@ -159,4 +187,3 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         Toast.makeText(getApplicationContext(),getString(R.string.onResume), Toast.LENGTH_SHORT).show();
     }*/
-}
