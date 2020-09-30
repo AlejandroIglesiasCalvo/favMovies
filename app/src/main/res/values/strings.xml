@@ -17,9 +17,13 @@
     <string name="bGuardar">Guardar</string>
     <string name="msg_guardado">¡Guardado correctamente!</string>
     <string name="msg_no_guardado">Campos no validos</string>
-    <string name="msg_crear_nueva_categoria">Se va a crear una nueva categoría</string>
+    <string name="msg_crear_nueva_categoria">Creacion de nueva categoria</string>
     <string name="msg_modif_categoria">Se va a modificar la categoría seleccionada</string>
     <string name="intento_de_accion">Intento de accion</string>
     <string name="strCancelar">Cancelar</string>
     <string name="msg_accion_ok">Accion realizada</string>
+    <string name="nombre_categoria">Nombre de la categoria</string>
+    <string name="descripcion_categorai">Descripcion de la categoria</string>
+    <string name="ok">OK</string>
+    <string name="Cancel">Cancel</string>
 </resources>
