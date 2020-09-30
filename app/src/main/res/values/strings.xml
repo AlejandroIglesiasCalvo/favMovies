@@ -21,4 +21,5 @@
     <string name="msg_modif_categoria">Se va a modificar la categoría seleccionada</string>
     <string name="intento_de_accion">Intento de accion</string>
     <string name="strCancelar">Cancelar</string>
+    <string name="msg_accion_ok">Accion realizada</string>
 </resources>

@@ -2,6 +2,7 @@ package es.uniovi.eii.sdm;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -26,11 +27,11 @@ public class MainActivity extends AppCompatActivity {
         btnGuardar.setOnClickListener((new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(ValidarCampos()){
+                if (ValidarCampos()) {
                     Snackbar.make(findViewById(R.id.Layaut), R.string.msg_guardado,
                             Snackbar.LENGTH_SHORT)
                             .show();
-                }else{
+                } else {
                     Snackbar.make(findViewById(R.id.Layaut), R.string.msg_no_guardado,
                             Snackbar.LENGTH_SHORT)
                             .show();
@@ -51,11 +52,17 @@ public class MainActivity extends AppCompatActivity {
                     msgCreaCategoria = Snackbar.make(findViewById(R.id.Layaut), R.string.msg_modif_categoria,
                             Snackbar.LENGTH_LONG);
                 }
-                msgCreaCategoria.setAction(R.string.strCancelar, new View.OnClickListener() {
+                //Accion de crear una nueva categoria
+                msgCreaCategoria.setAction(android.R.string.ok, new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        msgCreaCategoria.dismiss();
+                        Snackbar.make(findViewById(R.id.Layaut), R.string.msg_accion_ok,
+                                Snackbar.LENGTH_LONG)
+                                .show();
+
+                        modificarCategoria();
                     }
+
                 });
                 msgCreaCategoria.show();
             }
@@ -63,19 +70,24 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    boolean ValidarCampos(){
-      //Los objetos
+    private void modificarCategoria() {
+        Intent categoriaIntent = new Intent(MainActivity.this, CategoriaActivity.class);
+        startActivity(categoriaIntent);
+    }
+
+    boolean ValidarCampos() {
+        //Los objetos
         EditText titulo, descripcion, duracion, fecha;
         titulo = (EditText) findViewById(R.id.idTitulo);
-        descripcion= (EditText) findViewById(R.id.idDescripcion);
-        duracion=(EditText) findViewById(R.id.idDuracion);
-        fecha=(EditText) findViewById(R.id.idFecha);
+        descripcion = (EditText) findViewById(R.id.idDescripcion);
+        duracion = (EditText) findViewById(R.id.idDuracion);
+        fecha = (EditText) findViewById(R.id.idFecha);
         //Los strings
         String stitulo, sdescripcion, sduracion, sfecha;
         stitulo = titulo.getText().toString();
-        sdescripcion=descripcion.getText().toString();
-        sduracion=duracion.getText().toString();
-        sfecha=fecha.getText().toString();
+        sdescripcion = descripcion.getText().toString();
+        sduracion = duracion.getText().toString();
+        sfecha = fecha.getText().toString();
         //Esto no es mas facil, pero vale
         return !stitulo.isEmpty() && !sdescripcion.isEmpty() && !sduracion.isEmpty() && !sfecha.isEmpty();
     }
