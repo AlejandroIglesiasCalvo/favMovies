@@ -1,10 +1,12 @@
 package es.uniovi.eii.sdm;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -141,6 +143,40 @@ public class MainActivity extends AppCompatActivity {
         spinner.setAdapter(adapter);
     }
 
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        // Comprobamos a qué petición se está respondiendo
+        if (requestCode == GESTION_CATEGORIA) {
+            // Nos aseguramos que el resultado fue OK
+            if (resultCode == RESULT_OK) {
+                Categoria cateAux = data.getParcelableExtra(CATEGORIA_MODIFICADA);
+                //String cad= data.getStringExtra(CATEGORIA_MODIFICADA);
+                Log.d("FavMovies.MainActivity", cateAux.toString());
+
+                if (creandoCategoria) {
+                    // añadimos categoría a la lista
+                    listaCategorias.add(cateAux);
+                    introListaSpinner(spinner, listaCategorias);
+                } else {
+                    // busca la categoría del mismo nombre en la lista y cambia la descripción
+                    for (Categoria cat : listaCategorias) {
+                        if (cat.getNombre().equals(cateAux.getNombre())) {
+                            cat.setDescripcion(cateAux.getDescripcion());
+                            Log.d("FavMovies.MainActivity", "Modificada la descripción de: " + cat.getNombre());
+                            break;
+                        }
+
+                    }
+                }
+
+            } else if (resultCode == RESULT_CANCELED) {
+                Log.d("FavMovie.MainActivity", "CategoriaActivity cancelada");
+            }
+
+        }
+
+
+    }
 }
 
 
