@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -14,7 +15,20 @@ import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import es.uniovi.eii.sdm.modelo.Categoria;
+
 public class MainActivity extends AppCompatActivity {
+    private List<Categoria> listaCategorias;
+
+    // componentes
+    private Spinner spinner;
+    private EditText editTitulo;
+    private EditText editContenido;
+    private EditText editfecha;
+    private EditText editDuracion;
     private Snackbar msgCreaCategoria;
 
     @Override
@@ -22,6 +36,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //Toast.makeText(getApplicationContext(),getString(R.string.OnCreate), Toast.LENGTH_SHORT).show();
+
+        listaCategorias = new ArrayList<Categoria>();
+        listaCategorias.add(new Categoria("Accion", "pelicula de accion"));
+
+        // Inicializa el spinner
+        spinner = (Spinner) findViewById(R.id.spinner);
+        introListaSpinner(spinner, listaCategorias);
+
 
         Button btnGuardar = (Button) findViewById(R.id.button);
         btnGuardar.setOnClickListener((new View.OnClickListener() {
@@ -92,6 +114,16 @@ public class MainActivity extends AppCompatActivity {
         return !stitulo.isEmpty() && !sdescripcion.isEmpty() && !sduracion.isEmpty() && !sfecha.isEmpty();
     }
 
+    private void introListaSpinner(Spinner spinner, List<Categoria> listaCategorias) {
+        ArrayList<String> nombres = new ArrayList<>();
+        nombres.add("Sin definir");
+        for (Categoria elemento : listaCategorias) {
+            nombres.add(elemento.getNombre());
+        }
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, nombres);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+    }
     /*  @Override
     protected void onStart() {
         super.onStart();
