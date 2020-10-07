@@ -16,10 +16,12 @@ import java.util.List;
 import es.uniovi.eii.sdm.modelo.Categoria;
 import es.uniovi.eii.sdm.modelo.Pelicula;
 
+
 public class MainRecycler extends AppCompatActivity {
     RecyclerView listaPeliView;
     Pelicula peli;
     List<Pelicula> ListaPeli;
+    public static final String PELICULA_SELECCIONADA = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +36,23 @@ public class MainRecycler extends AppCompatActivity {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         listaPeliView.setLayoutManager(layoutManager);
 
+        ListaPeliculasAdapter lpAdapter = new ListaPeliculasAdapter(ListaPeli,
+                new ListaPeliculasAdapter.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(Pelicula peli) {
+                        clikonIntem(peli);
+                    }
+                });
+        listaPeliView.setAdapter(lpAdapter);
 
+    }
+
+    public void clikonIntem(Pelicula peli) {
+        Log.i("Click adapter", "Item Clicked" + peli.getCategoria().getNombre());
+
+        Intent intent = new Intent(MainRecycler.this, MainActivity.class);
+        intent.putExtra(PELICULA_SELECCIONADA, peli);
+        startActivity(intent);
     }
 
     private void rellenarLista() {
@@ -46,9 +64,9 @@ public class MainRecycler extends AppCompatActivity {
 
     }
 
-    public void crearPeliNUevaFab(View v){
-        Log.d("CrearPeli","CrearPeli");
-        Intent intent = new Intent (MainRecycler.this, MainActivity.class);
+    public void crearPeliNUevaFab(View v) {
+        Log.d("CrearPeli", "CrearPeli");
+        Intent intent = new Intent(MainRecycler.this, MainActivity.class);
         //startActivityForResult(intent, GESTION_ACTIVITY, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
     }
 }

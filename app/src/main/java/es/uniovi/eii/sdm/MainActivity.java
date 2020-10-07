@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -21,6 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import es.uniovi.eii.sdm.modelo.Categoria;
+import es.uniovi.eii.sdm.modelo.Pelicula;
 
 public class MainActivity extends AppCompatActivity {
     private List<Categoria> listaCategorias;
@@ -101,6 +103,28 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        Intent intentPeli = getIntent();
+        Pelicula pelicula = intentPeli.getParcelableExtra(MainRecycler.PELICULA_SELECCIONADA);
+        if (pelicula != null) {
+            abrirModoConsulta(pelicula);
+        }
+
+    }
+
+    private void abrirModoConsulta(Pelicula pelicula) {
+        TextView tvTitulo = (TextView)findViewById(R.id.idTitulo);
+        TextView txSinapsis = (TextView)findViewById(R.id.idDescripcion);
+        Spinner spCategoria = (Spinner)findViewById(R.id.spinner);
+        EditText edDuracion = (EditText)findViewById(R.id.idDuracion);
+        EditText edFecha = (EditText)findViewById(R.id.idFecha);
+        tvTitulo.setText(pelicula.getTitulo());
+        txSinapsis.setText(pelicula.getArgumento());
+        edDuracion.setText(pelicula.getDuracion());
+        edFecha.setText(pelicula.getFecha());
+        tvTitulo.setEnabled(false);
+        txSinapsis.setEnabled(false);
+        edDuracion.setEnabled(false);
+        edFecha.setEnabled(false);
     }
 
     private void modificarCategoria() {
