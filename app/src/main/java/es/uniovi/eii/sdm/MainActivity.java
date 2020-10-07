@@ -121,6 +121,7 @@ public class MainActivity extends AppCompatActivity {
         txSinapsis.setText(pelicula.getArgumento());
         edDuracion.setText(pelicula.getDuracion());
         edFecha.setText(pelicula.getFecha());
+
         tvTitulo.setEnabled(false);
         txSinapsis.setEnabled(false);
         edDuracion.setEnabled(false);
