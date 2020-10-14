@@ -9,14 +9,21 @@ public class Pelicula implements Parcelable {
     Categoria categoria;
     String duracion;
     String fecha;
+    String urlCaratula;
+    String urlFondo;
+    String urlTrailer;
 
-    public Pelicula(String titulo, String argumento, Categoria categoria, String duracion, String fecha) {
+    public Pelicula(String titulo, String argumento, Categoria categoria, String duracion, String fecha, String urlCaratula,String urlFondo,String urlTrailer) {
         this.titulo = titulo;
         this.argumento = argumento;
         this.categoria = categoria;
         this.duracion = duracion;
         this.fecha = fecha;
+        this.urlTrailer=urlTrailer;
+        this.urlFondo=urlFondo;
+        this.urlCaratula=urlCaratula;
     }
+
 
     protected Pelicula(Parcel in) {
         titulo = in.readString();
@@ -24,6 +31,10 @@ public class Pelicula implements Parcelable {
         categoria = in.readParcelable(Categoria.class.getClassLoader());
         duracion = in.readString();
         fecha = in.readString();
+
+        urlCaratula=in.readString();
+        urlFondo=in.readString();
+        urlTrailer=in.readString();
     }
 
     @Override
@@ -33,6 +44,9 @@ public class Pelicula implements Parcelable {
         dest.writeParcelable(categoria, flags);
         dest.writeString(duracion);
         dest.writeString(fecha);
+        dest.writeString(urlCaratula);
+        dest.writeString(urlFondo);
+        dest.writeString(urlTrailer);
     }
 
     @Override
@@ -100,5 +114,29 @@ public class Pelicula implements Parcelable {
 
     public void setFecha(String fecha) {
         this.fecha = fecha;
+    }
+
+    public String getUrlCaratula() {
+        return urlCaratula;
+    }
+
+    public void setUrlCaratula(String urlCaratula) {
+        this.urlCaratula = urlCaratula;
+    }
+
+    public String getUrlFondo() {
+        return urlFondo;
+    }
+
+    public void setUrlFondo(String urlFondo) {
+        this.urlFondo = urlFondo;
+    }
+
+    public String getUrlTrailer() {
+        return urlTrailer;
+    }
+
+    public void setUrlTrailer(String urlTrailer) {
+        this.urlTrailer = urlTrailer;
     }
 }

@@ -111,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void abrirModoConsulta(Pelicula pelicula) {
+    private void abrirModoConsulta(@org.jetbrains.annotations.NotNull Pelicula pelicula) {
         TextView tvTitulo = (TextView)findViewById(R.id.idTitulo);
         TextView txSinapsis = (TextView)findViewById(R.id.idDescripcion);
         Spinner spCategoria = (Spinner)findViewById(R.id.spinner);
