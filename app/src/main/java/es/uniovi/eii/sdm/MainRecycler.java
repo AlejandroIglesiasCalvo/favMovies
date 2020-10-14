@@ -54,7 +54,7 @@ public class MainRecycler extends AppCompatActivity {
     public void clikonIntem(Pelicula peli) {
         Log.i("Click adapter", "Item Clicked" + peli.getCategoria().getNombre());
 
-        Intent intent = new Intent(MainRecycler.this, MainActivity.class);
+        Intent intent = new Intent(MainRecycler.this, ShowMovie.class);
         intent.putExtra(PELICULA_SELECCIONADA, peli);
         startActivity(intent);
     }
