@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navigation_info"
+        android:title="@string/title_info" />
+    <item
+        android:id="@+id/navigation_actores"
+        android:title="ACTORES" />
+    <item
+        android:id="@+id/navigation_argumento"
+        android:title="ARGUMENTO" />
+</menu>
