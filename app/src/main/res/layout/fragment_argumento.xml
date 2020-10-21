@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".ui.argumentoFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+
 
     <TextView
         android:id="@+id/argumentoID"
