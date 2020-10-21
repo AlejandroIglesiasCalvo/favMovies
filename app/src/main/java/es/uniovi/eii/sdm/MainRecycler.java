@@ -56,7 +56,7 @@ public class MainRecycler extends AppCompatActivity {
 
         Intent intent = new Intent(MainRecycler.this, ShowMovie.class);
         intent.putExtra(PELICULA_SELECCIONADA, peli);
-        startActivity(intent);
+        startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
     }
 
 
