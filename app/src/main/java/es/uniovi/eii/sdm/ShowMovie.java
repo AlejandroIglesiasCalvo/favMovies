@@ -10,14 +10,19 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.appbar.CollapsingToolbarLayout;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.squareup.picasso.Picasso;
 
 import es.uniovi.eii.sdm.modelo.Pelicula;
+import es.uniovi.eii.sdm.ui.actoresFragment;
+import es.uniovi.eii.sdm.ui.argumentoFragment;
+import es.uniovi.eii.sdm.ui.infoFragment;
 import es.uniovi.eii.sdm.util.Conexion;
 
 public class ShowMovie extends AppCompatActivity {
@@ -43,7 +48,10 @@ public class ShowMovie extends AppCompatActivity {
         toolBarLayout = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
         toolBarLayout.setTitle(getTitle());
         imagenFondo = (ImageView) findViewById(R.id.imagenFondo);
-
+//Gestion de la botonera
+        BottomNavigationView navView = findViewById(R.id.nav_view);
+//Le añado un listener
+        navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         // Gestión de los controles que contienen los datos de la película
         categoria = (TextView) findViewById(R.id.categoria);
         estreno = (TextView) findViewById(R.id.estreno);
@@ -79,9 +87,9 @@ public class ShowMovie extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
+//        if (id == R.id.action_settings) {
+//            return true;
+//        }
 
         if (id == R.id.compartir) {
             Conexion conexion = new Conexion(getApplicationContext());
@@ -132,13 +140,53 @@ public class ShowMovie extends AppCompatActivity {
             // Imagen de fondo
             Picasso.get().load(pelicula.getUrlFondo()).into(imagenFondo);
 
-            categoria.setText(pelicula.getCategoria().getNombre());
-            estreno.setText(pelicula.getFecha());
-            duracion.setText(pelicula.getDuracion());
-            argumento.setText(pelicula.getArgumento());
-
-            // Imagen de la carátula
-            Picasso.get().load(pelicula.getUrlCaratula()).into(caratula);
+            infoFragment info = new infoFragment();
+            Bundle args = new Bundle();
+            args.putString(infoFragment.ESTRENO, pelicula.getFecha());
+            args.putString(infoFragment.DURACION, pelicula.getDuracion());
+            args.putString(infoFragment.CARATULA, pelicula.getUrlCaratula());
+            info.setArguments(args);
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, info).commit();
         }
     }
+
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+            = new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            if (pelicula != null) {
+
+                switch (item.getItemId()) {
+                    case R.id.navigation_info:
+                        //Creamos el framento de información
+                        infoFragment info = new infoFragment();
+                        Bundle args_info = new Bundle();
+                        args_info.putString(infoFragment.ESTRENO, pelicula.getFecha());
+                        args_info.putString(infoFragment.DURACION, pelicula.getDuracion());
+                        args_info.putString(infoFragment.CARATULA, pelicula.getUrlCaratula());
+                        info.setArguments(args_info);
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, info).commit();
+                        return true;
+                    case R.id.navigation_actores:
+                        //Creamos el framento de información
+                        actoresFragment actores = new actoresFragment();
+                        Bundle args_actores = new Bundle();
+                        args_actores.putString(actoresFragment.ACTORES, pelicula.getTitulo());
+                        actores.setArguments(args_actores);
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, actores).commit();
+                        return true;
+                    case R.id.navigation_argumento:
+                        //Creamos el framento de argumento
+                        argumentoFragment argumento = new argumentoFragment();
+                        Bundle args_argumento = new Bundle();
+                        args_argumento.putString(argumentoFragment.ARGUMENTO, pelicula.getArgumento());
+                        argumento.setArguments(args_argumento);
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, argumento).commit();
+                        return true;
+                }
+            }
+            return true;
+        }
+    };
 }
