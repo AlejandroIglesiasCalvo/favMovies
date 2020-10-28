@@ -19,23 +19,39 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+import es.uniovi.eii.sdm.datos.PeliculasDataSource;
 import es.uniovi.eii.sdm.modelo.Categoria;
 import es.uniovi.eii.sdm.modelo.Pelicula;
 
 
 public class MainRecycler extends AppCompatActivity {
-    public static String filtrocategoria=null;
+    public static String filtrocategoria = null;
     RecyclerView listaPeliView;
     Pelicula peli;
     List<Pelicula> ListaPeli;
     public static final String PELICULA_SELECCIONADA = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_recycler);
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
         cargarPeliculas();
+        //cargarReparto();
+        //cargarRepartoPelicula();
+        PeliculasDataSource peliculasDataSource = new PeliculasDataSource(getApplicationContext());
+        peliculasDataSource.open();
+        if (filtrocategoria == null) {
+            ListaPeli = peliculasDataSource.getAllValorations();
+        } else {
+            ListaPeli = peliculasDataSource.getFilteredValorations(filtrocategoria);
+        }
 
+        peliculasDataSource.close();
         listaPeliView = (RecyclerView) findViewById(R.id.recycler);
         listaPeliView.setHasFixedSize(true);
 
@@ -50,7 +66,6 @@ public class MainRecycler extends AppCompatActivity {
                     }
                 });
         listaPeliView.setAdapter(lpAdapter);
-
     }
 
     public void clikonIntem(Pelicula peli) {
@@ -70,32 +85,38 @@ public class MainRecycler extends AppCompatActivity {
 
     protected void cargarPeliculas() {
         /*si una película le falta la caratual, el fondo o el trailer, le pongo unos por defecto. De esta manera me aseguro
-    estos campos en las películas*/
+             estos campos en las películas*/
         String Caratula_por_defecto = "https://image.tmdb.org/t/p/original/jnFCk7qGGWop2DgfnJXeKLZFuBq.jpg\n";
         String fondo_por_defecto = "https://image.tmdb.org/t/p/original/xJWPZIYOEFIjZpBL7SVBGnzRYXp.jpg\n";
         String trailer_por_defecto = "https://www.youtube.com/watch?v=lpEJVgysiWs\n";
         Pelicula peli;
-        ListaPeli = new ArrayList<Pelicula>();
+
         InputStream file = null;
         InputStreamReader reader = null;
         BufferedReader bufferedReader = null;
 
         try {
-            file = getAssets().open("lista_peliculas_url_utf8.csv");
+            file = getAssets().open("peliculas.csv");
             reader = new InputStreamReader(file);
             bufferedReader = new BufferedReader(reader);
-
+            bufferedReader.readLine();
             String line = null;
             while ((line = bufferedReader.readLine()) != null) {
                 String[] data = line.split(";");
                 if (data != null && data.length >= 5) {
                     if (data.length == 8) {
-                        peli = new Pelicula(data[0], data[1], new Categoria(data[2], ""), data[3], data[4], data[5], data[6], data[7]);
+                        peli = new Pelicula(Integer.parseInt(data[0]), data[1], data[2], new Categoria(data[3], ""), data[4], data[5], data[6], data[7], data[8]);
                     } else {
-                        peli = new Pelicula(data[0], data[1], new Categoria(data[2], ""), data[3], data[4], Caratula_por_defecto, fondo_por_defecto, trailer_por_defecto);
+                        peli = new Pelicula(Integer.parseInt(data[0]), data[1], data[2], new Categoria(data[3], ""), data[4], data[5], "", "", "");
                     }
                     Log.d("cargarPeliculas", peli.toString());
-                    ListaPeli.add(peli);
+                    //ListaPeli.add(peli);
+
+                    //Metemos la película en la base de datos:
+                    PeliculasDataSource peliculasDataSource = new PeliculasDataSource(getApplicationContext());
+                    peliculasDataSource.open();
+                    peliculasDataSource.createpelicula(peli);
+                    peliculasDataSource.close();
                 }
             }
         } catch (IOException e) {
@@ -110,6 +131,7 @@ public class MainRecycler extends AppCompatActivity {
             }
         }
     }
+
     //Gestión del menú
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -127,7 +149,7 @@ public class MainRecycler extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.settings) {
             //Llamamos a la activity settings de ajustes
-            Intent intentSettingsActivity=new Intent(MainRecycler.this, SettingsActivity.class);
+            Intent intentSettingsActivity = new Intent(MainRecycler.this, SettingsActivity.class);
             startActivity(intentSettingsActivity);
 
             return true;

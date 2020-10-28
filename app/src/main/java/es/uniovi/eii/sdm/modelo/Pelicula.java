@@ -4,6 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class Pelicula implements Parcelable {
+    int id;
     String titulo;
     String argumento;
     Categoria categoria;
@@ -13,32 +14,37 @@ public class Pelicula implements Parcelable {
     String urlFondo;
     String urlTrailer;
 
-    public Pelicula(String titulo, String argumento, Categoria categoria, String duracion, String fecha, String urlCaratula,String urlFondo,String urlTrailer) {
+    public Pelicula(int id, String titulo, String argumento, Categoria categoria, String duracion, String fecha, String urlCaratula, String urlFondo, String urlTrailer) {
+        this.id = id;
         this.titulo = titulo;
         this.argumento = argumento;
         this.categoria = categoria;
         this.duracion = duracion;
         this.fecha = fecha;
-        this.urlTrailer=urlTrailer;
-        this.urlFondo=urlFondo;
-        this.urlCaratula=urlCaratula;
+        this.urlTrailer = urlTrailer;
+        this.urlFondo = urlFondo;
+        this.urlCaratula = urlCaratula;
     }
 
+    public Pelicula() {
+    }
 
     protected Pelicula(Parcel in) {
+        id = in.readInt();
         titulo = in.readString();
         argumento = in.readString();
         categoria = in.readParcelable(Categoria.class.getClassLoader());
         duracion = in.readString();
         fecha = in.readString();
 
-        urlCaratula=in.readString();
-        urlFondo=in.readString();
-        urlTrailer=in.readString();
+        urlCaratula = in.readString();
+        urlFondo = in.readString();
+        urlTrailer = in.readString();
     }
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id);
         dest.writeString(titulo);
         dest.writeString(argumento);
         dest.writeParcelable(categoria, flags);
@@ -138,5 +144,12 @@ public class Pelicula implements Parcelable {
 
     public void setUrlTrailer(String urlTrailer) {
         this.urlTrailer = urlTrailer;
+    }
+
+    public int getId() {
+        return id;
+    }
+    public void setId(int id) {
+        this.id = id;
     }
 }
