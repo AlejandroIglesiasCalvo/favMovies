@@ -24,11 +24,11 @@ import es.uniovi.eii.sdm.modelo.Pelicula;
 
 
 public class MainRecycler extends AppCompatActivity {
+    public static String filtrocategoria=null;
     RecyclerView listaPeliView;
     Pelicula peli;
     List<Pelicula> ListaPeli;
     public static final String PELICULA_SELECCIONADA = null;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
