@@ -10,9 +10,27 @@
         <item>reply_all</item>
     </string-array>
     <string-array name="listapelis_entradas">
-        <item>Accion</item>
+        <item>Acción</item>
+        <item>Aventuras</item>
+        <item>Dramáticas</item>
+        <item>De terror</item>
+        <item>Musicales</item>
+        <item>Ciencia Ficción</item>
+        <item>De guerra</item>
+        <item>Comedias</item>
+        <item>Románticas</item>
+        <item>Otro</item>
     </string-array>
     <string-array name="listapelis_values">
-        <item>Accion</item>
+        <item>Acción</item>
+        <item>Aventuras</item>
+        <item>Dramáticas</item>
+        <item>De terror</item>
+        <item>Musicales</item>
+        <item>Ciencia Ficción</item>
+        <item>De guerra</item>
+        <item>Comedias</item>
+        <item>Románticas</item>
+        <item>Otro</item>
     </string-array>
 </resources>
