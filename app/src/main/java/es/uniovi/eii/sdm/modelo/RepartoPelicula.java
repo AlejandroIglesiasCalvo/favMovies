@@ -15,6 +15,22 @@ public class RepartoPelicula implements Parcelable {
     }
 
 
+    public static final Creator<RepartoPelicula> CREATOR = new Creator<RepartoPelicula>() {
+        @Override
+        public RepartoPelicula createFromParcel(Parcel in) {
+            return new RepartoPelicula(in);
+        }
+
+        @Override
+        public RepartoPelicula[] newArray(int size) {
+            return new RepartoPelicula[size];
+        }
+    };
+
+    public RepartoPelicula() {
+
+    }
+
     public int getId_pelicula() {
         return id_pelicula;
     }

@@ -64,6 +64,7 @@ public class PeliculasDataSource {
 
     /**
      * Recibe la película y crea el registro en la base de datos.
+     *
      * @param peliculaToInsert
      * @return
      */
@@ -112,10 +113,9 @@ public class PeliculasDataSource {
             pelicula.setDuracion(cursor.getString(4));
             pelicula.setFecha(cursor.getString(5));
             pelicula.setUrlCaratula("https://image.tmdb.org/t/p/original/" + cursor.getString(6));
-
             pelicula.setUrlFondo("https://image.tmdb.org/t/p/original/" + cursor.getString(7));
             pelicula.setUrlTrailer("https://youtu.be/" + cursor.getString(8));
-            
+
             peliculaList.add(pelicula);
             cursor.moveToNext();
         }

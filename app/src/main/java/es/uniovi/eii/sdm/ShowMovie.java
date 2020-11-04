@@ -169,12 +169,12 @@ public class ShowMovie extends AppCompatActivity {
                         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, info).commit();
                         return true;
                     case R.id.navigation_actores:
-                        //Creamos el framento de información
-                        actoresFragment actores = new actoresFragment();
-                        Bundle args_actores = new Bundle();
-                        args_actores.putString(actoresFragment.ACTORES, pelicula.getTitulo());
-                        actores.setArguments(args_actores);
-                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, actores).commit();
+                        actoresFragment actorFragment = new actoresFragment();
+                        Bundle args1 = new Bundle();
+                        //Enviamos el id de la película, que es lo que necesitamos para encontrar a sus actores en la base de datos.
+                        args1.putInt("id_pelicula", pelicula.getId() );
+                        actorFragment.setArguments(args1);
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, actorFragment).commit();
                         return true;
                     case R.id.navigation_argumento:
                         //Creamos el framento de argumento

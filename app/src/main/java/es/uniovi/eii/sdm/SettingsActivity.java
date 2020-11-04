@@ -32,12 +32,12 @@ public class SettingsActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        sharedPreferences =
-                PreferenceManager.getDefaultSharedPreferences(this /* Activity context */);
-        name = sharedPreferences.getString("keyCategoria", "");
-        Log.i("Categoria", name);
-        //establezco la categoría
-        MainRecycler.filtrocategoria = name;
+//        sharedPreferences =
+//                PreferenceManager.getDefaultSharedPreferences(this /* Activity context */);
+//        name = sharedPreferences.getString("keyCategoria", "");
+//        Log.i("Categoria", name);
+//        //establezco la categoría
+//        MainRecycler.filtrocategoria = name;
     }
 
     public static class SettingsFragment extends PreferenceFragmentCompat {
