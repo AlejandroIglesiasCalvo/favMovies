@@ -27,9 +27,13 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+import es.uniovi.eii.sdm.datos.ActoresDataSource;
 import es.uniovi.eii.sdm.datos.PeliculasDataSource;
+import es.uniovi.eii.sdm.datos.RepartoPeliculaDataSource;
+import es.uniovi.eii.sdm.modelo.Actor;
 import es.uniovi.eii.sdm.modelo.Categoria;
 import es.uniovi.eii.sdm.modelo.Pelicula;
+import es.uniovi.eii.sdm.modelo.RepartoPelicula;
 
 
 public class MainRecycler extends AppCompatActivity {
@@ -37,6 +41,8 @@ public class MainRecycler extends AppCompatActivity {
     RecyclerView listaPeliView;
     Pelicula peli;
     List<Pelicula> ListaPeli;
+    List<RepartoPelicula> listaReparto;
+    List<Actor> listaActor;
     public static final String PELICULA_SELECCIONADA = null;
     NotificationCompat.Builder mBuilder;
     NotificationManager mNotificationManager;
@@ -238,6 +244,95 @@ public class MainRecycler extends AppCompatActivity {
                         peliculasDataSource.open();
                         peliculasDataSource.createpelicula(peli);
                         peliculasDataSource.close();
+                    }
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            } finally {
+                if (bufferedReader != null) {
+                    try {
+                        bufferedReader.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
+
+        private void cargarRepartoPelicula() {
+            RepartoPelicula reparto;
+            listaReparto = new ArrayList<RepartoPelicula>();
+            InputStream file = null;
+            InputStreamReader reader = null;
+            BufferedReader bufferedReader = null;
+
+            try {
+                file = getAssets().open("peliculas-reparto.csv");
+                reader = new InputStreamReader(file);
+                bufferedReader = new BufferedReader(reader);
+
+                String line = null;
+
+                bufferedReader.readLine();
+
+                numeroLineasLeidas++;
+                publishProgress((int) ((numeroLineasLeidas / lineasALeer) * 100));
+
+                while ((line = bufferedReader.readLine()) != null) {
+                    String[] data = line.split(";");
+                    if (data.length == 3) {
+                        reparto = new RepartoPelicula(Integer.parseInt(data[0]), Integer.parseInt(data[1]), data[2]);
+                        Log.d("cargarReparto", reparto.toString());
+                        RepartoPeliculaDataSource repartoDataSource = new RepartoPeliculaDataSource(getApplicationContext());
+                        repartoDataSource.open();
+                        repartoDataSource.creactoReparto(reparto);
+                        repartoDataSource.close();
+
+                        numeroLineasLeidas++;
+                        publishProgress((int) ((numeroLineasLeidas / lineasALeer) * 100));
+                    }
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            } finally {
+                if (bufferedReader != null) {
+                    try {
+                        bufferedReader.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
+
+        private void cargarReparto() {
+            Actor actor;
+            listaActor = new ArrayList<Actor>();
+            InputStream file = null;
+            InputStreamReader reader = null;
+            BufferedReader bufferedReader = null;
+
+            try {
+                file = getAssets().open("reparto.csv");
+                reader = new InputStreamReader(file);
+                bufferedReader = new BufferedReader(reader);
+
+                String line = null;
+
+                bufferedReader.readLine();
+                numeroLineasLeidas++;
+                publishProgress((int) ((numeroLineasLeidas / lineasALeer) * 100));
+                while ((line = bufferedReader.readLine()) != null) {
+                    String[] data = line.split(";");
+                    if (data.length == 4) {
+                        actor = new Actor(Integer.parseInt(data[0]), data[1], data[2], data[3], data[4]);
+                        Log.d("cargarReparto", actor.toString());
+                        ActoresDataSource actorDataSource = new ActoresDataSource(getApplicationContext());
+                        actorDataSource.open();
+                        actorDataSource.createactor(actor);
+                        actorDataSource.close();
+                        numeroLineasLeidas++;
+                        publishProgress((int) ((numeroLineasLeidas / lineasALeer) * 100));
                     }
                 }
             } catch (IOException e) {
