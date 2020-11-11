@@ -30,10 +30,22 @@ import java.util.List;
 import es.uniovi.eii.sdm.datos.db.ActoresDataSource;
 import es.uniovi.eii.sdm.datos.db.PeliculasDataSource;
 import es.uniovi.eii.sdm.datos.db.RepartoPeliculaDataSource;
+
+import es.uniovi.eii.sdm.datos.server.MovieData;
+import es.uniovi.eii.sdm.datos.server.MovieListResult;
+import es.uniovi.eii.sdm.datos.server.ServerDataMapper;
 import es.uniovi.eii.sdm.modelo.Actor;
 import es.uniovi.eii.sdm.modelo.Categoria;
 import es.uniovi.eii.sdm.modelo.Pelicula;
 import es.uniovi.eii.sdm.modelo.RepartoPelicula;
+import es.uniovi.eii.sdm.remote.ThemoviedbApi;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+import static es.uniovi.eii.sdm.remote.ApiUtils.API_KEY;
+import static es.uniovi.eii.sdm.remote.ApiUtils.LANGUAGE;
+import static es.uniovi.eii.sdm.remote.ApiUtils.createThemoviedbApi;
 
 
 public class MainRecycler extends AppCompatActivity {
@@ -46,15 +58,65 @@ public class MainRecycler extends AppCompatActivity {
     public static final String PELICULA_SELECCIONADA = null;
     NotificationCompat.Builder mBuilder;
     NotificationManager mNotificationManager;
+    private ThemoviedbApi clienteApi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_recycler);
-        ConstruirNotificacion(getString(R.string.app_name), "Acceso a la BD de peliculas");
-        //Lanzamos la tarea asíncrona en segundo término
-        DonwloadFilesTask task = new DonwloadFilesTask();
-        task.execute();
+//        ConstruirNotificacion(getString(R.string.app_name), "Acceso a la BD de peliculas");
+//        //Lanzamos la tarea asíncrona en segundo término
+//        DonwloadFilesTask task = new DonwloadFilesTask();
+//        task.execute();
+
+        //creamos cliente de la API
+        clienteApi = createThemoviedbApi();
+        realizarPeticionPeliculasPopulares(clienteApi);
+    }
+
+    private void realizarPeticionPeliculasPopulares(ThemoviedbApi clienteThemoviedbApi) {
+        Call<MovieListResult> call =
+                clienteThemoviedbApi.getListMovies("popular", API_KEY, LANGUAGE, 1);
+
+        // Petición asíncrona a la API
+        call.enqueue(new Callback<MovieListResult>() {
+            @Override
+            public void onResponse(Call<MovieListResult> call, Response<MovieListResult> response) {
+                switch (response.code()) {
+                    case 200:
+                        MovieListResult data = response.body();
+                        List<MovieData> listaDatosPeliculas = data.getMovieData();
+                        Log.d("PeticionPelPopulares", "ListaDatosPeliculas: " + listaDatosPeliculas);
+
+                        // Convertir datos de la API a clase Pelicula del dominio
+                        ListaPeli = ServerDataMapper.convertMovieListToDomain(listaDatosPeliculas);
+
+                        // cargar de RecyclerView con los datos
+                        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+                        listaPeliView.setLayoutManager(layoutManager);
+                        ListaPeliculasAdapter lpAdapter = new ListaPeliculasAdapter(ListaPeli,
+                                new ListaPeliculasAdapter.OnItemClickListener() {
+                                    @Override
+                                    public void onItemClick(Pelicula peli) {
+                                        clikonIntem(peli);
+                                    }
+                                });
+
+                        listaPeliView.setAdapter(lpAdapter);
+
+
+                        break;
+                    default:
+                        call.cancel();
+                        break;
+                }
+            }
+
+            @Override
+            public void onFailure(Call<MovieListResult> call, Throwable t) {
+                Log.e("Lista - error", t.toString());
+            }
+        });
     }
 
     protected void cargarView() {

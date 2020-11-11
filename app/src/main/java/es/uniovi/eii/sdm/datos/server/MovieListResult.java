@@ -18,7 +18,8 @@ public class MovieListResult {
     private Integer totalPages;
     @SerializedName("results")
     @Expose
-    private List<Result> results = null;
+    private List<es.uniovi.eii.sdm.datos.server.MovieData> MovieData = null;
+
 
     public Integer getPage() {
         return page;
@@ -44,12 +45,12 @@ public class MovieListResult {
         this.totalPages = totalPages;
     }
 
-    public List<Result> getResults() {
-        return results;
+    public List<es.uniovi.eii.sdm.datos.server.MovieData> getMovieData() {
+        return MovieData;
     }
 
-    public void setResults(List<Result> results) {
-        this.results = results;
+    public void setResults(List<es.uniovi.eii.sdm.datos.server.MovieData> movieData) {
+        this.MovieData = movieData;
     }
 
 }
