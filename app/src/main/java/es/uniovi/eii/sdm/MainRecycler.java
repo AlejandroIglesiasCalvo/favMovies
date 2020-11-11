@@ -68,7 +68,6 @@ public class MainRecycler extends AppCompatActivity {
 //        //Lanzamos la tarea asíncrona en segundo término
 //        DonwloadFilesTask task = new DonwloadFilesTask();
 //        task.execute();
-
         //creamos cliente de la API
         clienteApi = createThemoviedbApi();
         realizarPeticionPeliculasPopulares(clienteApi);
@@ -92,8 +91,12 @@ public class MainRecycler extends AppCompatActivity {
                         ListaPeli = ServerDataMapper.convertMovieListToDomain(listaDatosPeliculas);
 
                         // cargar de RecyclerView con los datos
+                        listaPeliView = (RecyclerView) findViewById(R.id.recycler);
+                        listaPeliView.setHasFixedSize(true);
+
                         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
                         listaPeliView.setLayoutManager(layoutManager);
+
                         ListaPeliculasAdapter lpAdapter = new ListaPeliculasAdapter(ListaPeli,
                                 new ListaPeliculasAdapter.OnItemClickListener() {
                                     @Override
@@ -101,7 +104,6 @@ public class MainRecycler extends AppCompatActivity {
                                         clikonIntem(peli);
                                     }
                                 });
-
                         listaPeliView.setAdapter(lpAdapter);
 
 

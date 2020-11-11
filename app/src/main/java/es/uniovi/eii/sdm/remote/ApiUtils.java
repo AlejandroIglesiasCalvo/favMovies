@@ -7,8 +7,7 @@ public class ApiUtils {
     public static final String API_KEY = "d92c9352629e5677e9ded29344f4761a";
 
     public static ThemoviedbApi createThemoviedbApi() {
-        Retrofit retrofit= RetrofitClient.getCliente(ThemoviedbApi.BASE_URL);
-
+        Retrofit retrofit = RetrofitClient.getClient(ThemoviedbApi.BASE_URL);
         return retrofit.create(ThemoviedbApi.class);
     }
 
