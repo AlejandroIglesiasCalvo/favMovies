@@ -31,8 +31,8 @@ import es.uniovi.eii.sdm.datos.db.ActoresDataSource;
 import es.uniovi.eii.sdm.datos.db.PeliculasDataSource;
 import es.uniovi.eii.sdm.datos.db.RepartoPeliculaDataSource;
 
-import es.uniovi.eii.sdm.datos.server.MovieData;
-import es.uniovi.eii.sdm.datos.server.MovieListResult;
+import es.uniovi.eii.sdm.datos.server.movieList.MovieData;
+import es.uniovi.eii.sdm.datos.server.movieList.MovieListResult;
 import es.uniovi.eii.sdm.datos.server.ServerDataMapper;
 import es.uniovi.eii.sdm.modelo.Actor;
 import es.uniovi.eii.sdm.modelo.Categoria;

@@ -5,7 +5,7 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
 
-import es.uniovi.eii.sdm.datos.server.MovieData;
+import es.uniovi.eii.sdm.datos.server.movieList.MovieData;
 import es.uniovi.eii.sdm.modelo.Categoria;
 import es.uniovi.eii.sdm.modelo.Pelicula;
 

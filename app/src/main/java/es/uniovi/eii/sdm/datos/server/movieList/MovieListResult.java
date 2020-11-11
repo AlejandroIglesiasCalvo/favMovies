@@ -1,5 +1,5 @@
 
-package es.uniovi.eii.sdm.datos.server;
+package es.uniovi.eii.sdm.datos.server.movieList;
 
 import java.util.List;
 import com.google.gson.annotations.Expose;
@@ -18,7 +18,7 @@ public class MovieListResult {
     private Integer totalPages;
     @SerializedName("results")
     @Expose
-    private List<es.uniovi.eii.sdm.datos.server.MovieData> MovieData = null;
+    private List<es.uniovi.eii.sdm.datos.server.movieList.MovieData> MovieData = null;
 
 
     public Integer getPage() {
@@ -45,11 +45,11 @@ public class MovieListResult {
         this.totalPages = totalPages;
     }
 
-    public List<es.uniovi.eii.sdm.datos.server.MovieData> getMovieData() {
+    public List<es.uniovi.eii.sdm.datos.server.movieList.MovieData> getMovieData() {
         return MovieData;
     }
 
-    public void setResults(List<es.uniovi.eii.sdm.datos.server.MovieData> movieData) {
+    public void setResults(List<es.uniovi.eii.sdm.datos.server.movieList.MovieData> movieData) {
         this.MovieData = movieData;
     }
 

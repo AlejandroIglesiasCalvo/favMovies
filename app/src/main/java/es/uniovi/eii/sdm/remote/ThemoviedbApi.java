@@ -1,7 +1,7 @@
 package es.uniovi.eii.sdm.remote;
 
 
-import es.uniovi.eii.sdm.datos.server.MovieListResult;
+import es.uniovi.eii.sdm.datos.server.movieList.MovieListResult;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
