@@ -27,9 +27,9 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-import es.uniovi.eii.sdm.datos.ActoresDataSource;
-import es.uniovi.eii.sdm.datos.PeliculasDataSource;
-import es.uniovi.eii.sdm.datos.RepartoPeliculaDataSource;
+import es.uniovi.eii.sdm.datos.db.ActoresDataSource;
+import es.uniovi.eii.sdm.datos.db.PeliculasDataSource;
+import es.uniovi.eii.sdm.datos.db.RepartoPeliculaDataSource;
 import es.uniovi.eii.sdm.modelo.Actor;
 import es.uniovi.eii.sdm.modelo.Categoria;
 import es.uniovi.eii.sdm.modelo.Pelicula;
@@ -177,8 +177,8 @@ public class MainRecycler extends AppCompatActivity {
             try {
                 //Cargamos la base de datos.
                 cargarPeliculas();
-                //cargarReparto();
-                //cargarRepartoPelicula();
+                cargarReparto();
+                cargarRepartoPelicula();
 
                 //Si la carga no da ningún error inesperado...
                 mensaje = "Lista de películas actualizada";
@@ -260,6 +260,7 @@ public class MainRecycler extends AppCompatActivity {
         }
 
         private void cargarRepartoPelicula() {
+
             RepartoPelicula reparto;
             listaReparto = new ArrayList<RepartoPelicula>();
             InputStream file = null;
@@ -270,11 +271,8 @@ public class MainRecycler extends AppCompatActivity {
                 file = getAssets().open("peliculas-reparto.csv");
                 reader = new InputStreamReader(file);
                 bufferedReader = new BufferedReader(reader);
-
                 String line = null;
-
                 bufferedReader.readLine();
-
                 numeroLineasLeidas++;
                 publishProgress((int) ((numeroLineasLeidas / lineasALeer) * 100));
 

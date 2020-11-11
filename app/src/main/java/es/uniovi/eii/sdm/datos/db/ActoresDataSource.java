@@ -1,4 +1,4 @@
-package es.uniovi.eii.sdm.datos;
+package es.uniovi.eii.sdm.datos.db;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -10,8 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import es.uniovi.eii.sdm.modelo.Actor;
-import es.uniovi.eii.sdm.modelo.Categoria;
-import es.uniovi.eii.sdm.modelo.Pelicula;
 
 public class ActoresDataSource {
 

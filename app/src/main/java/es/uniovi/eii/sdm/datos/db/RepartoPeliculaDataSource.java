@@ -1,4 +1,4 @@
-package es.uniovi.eii.sdm.datos;
+package es.uniovi.eii.sdm.datos.db;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -9,7 +9,6 @@ import android.database.sqlite.SQLiteDatabase;
 import java.util.ArrayList;
 import java.util.List;
 
-import es.uniovi.eii.sdm.modelo.Pelicula;
 import es.uniovi.eii.sdm.modelo.RepartoPelicula;
 
 public class RepartoPeliculaDataSource {

@@ -12,13 +12,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import java.util.List;
 
 import es.uniovi.eii.sdm.ListaActoresAdapter;
 import es.uniovi.eii.sdm.R;
-import es.uniovi.eii.sdm.datos.ActoresDataSource;
+import es.uniovi.eii.sdm.datos.db.ActoresDataSource;
 import es.uniovi.eii.sdm.modelo.Actor;
 
 
