@@ -4,7 +4,7 @@ package es.uniovi.eii.sdm.datos.server.movieList;
 import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-
+@SuppressWarnings("SpellCheckingInspection")
 public class MovieData {
 
     @SerializedName("popularity")

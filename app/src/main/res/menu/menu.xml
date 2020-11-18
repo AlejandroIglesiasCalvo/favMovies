@@ -9,4 +9,7 @@
     <item
         android:id="@+id/navigation_argumento"
         android:title="ARGUMENTO" />
+    <item
+        android:id="@+id/action_borrarbd"
+        android:title="Borrar BD" />
 </menu>

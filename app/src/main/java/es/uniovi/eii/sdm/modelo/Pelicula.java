@@ -2,7 +2,7 @@ package es.uniovi.eii.sdm.modelo;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-
+@SuppressWarnings("SpellCheckingInspection")
 public class Pelicula implements Parcelable {
     int id;
     String titulo;

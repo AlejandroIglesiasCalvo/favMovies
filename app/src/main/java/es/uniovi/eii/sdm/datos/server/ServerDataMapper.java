@@ -8,7 +8,7 @@ import java.util.List;
 import es.uniovi.eii.sdm.datos.server.movieList.MovieData;
 import es.uniovi.eii.sdm.modelo.Categoria;
 import es.uniovi.eii.sdm.modelo.Pelicula;
-
+@SuppressWarnings("SpellCheckingInspection")
 public class ServerDataMapper {
     private static final String BASE_URL_IMG = "https://image.tmdb.org/t/p/";
     private static final String IMG_W342 = "w342";

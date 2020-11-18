@@ -16,7 +16,7 @@ import java.util.List;
 
 import es.uniovi.eii.sdm.modelo.Actor;
 import es.uniovi.eii.sdm.modelo.Pelicula;
-
+@SuppressWarnings("SpellCheckingInspection")
 public class ListaActoresAdapter extends RecyclerView.Adapter<ListaActoresAdapter.ActoresViewHolder> {
 
     // Interfaz para manejar el evento click sobre un elemento

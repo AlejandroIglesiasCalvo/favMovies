@@ -24,7 +24,7 @@ import java.util.List;
 
 import es.uniovi.eii.sdm.modelo.Categoria;
 import es.uniovi.eii.sdm.modelo.Pelicula;
-
+@SuppressWarnings("SpellCheckingInspection")
 public class MainActivity extends AppCompatActivity {
     private List<Categoria> listaCategorias;
 

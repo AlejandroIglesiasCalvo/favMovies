@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import es.uniovi.eii.sdm.modelo.Actor;
-
+@SuppressWarnings("SpellCheckingInspection")
 public class ActoresDataSource {
 
     /**

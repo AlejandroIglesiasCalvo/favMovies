@@ -15,7 +15,7 @@ import com.squareup.picasso.Picasso;
 
 import es.uniovi.eii.sdm.R;
 
-
+@SuppressWarnings("SpellCheckingInspection")
 public class argumentoFragment extends Fragment {
 
     public static final String ARGUMENTO = "argumento";

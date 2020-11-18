@@ -8,6 +8,7 @@ import android.util.Log;
 /**
  * MyDHelper
  */
+@SuppressWarnings("SpellCheckingInspection")
 public class MyDBHelper extends SQLiteOpenHelper {
 
     /**
@@ -120,5 +121,11 @@ public class MyDBHelper extends SQLiteOpenHelper {
         db.execSQL(DATABASE_DROP_REPARTO);
         this.onCreate(db);
 
+    }
+
+    public void borrarDB(){
+        SQLiteDatabase database= getWritableDatabase();
+        database.delete(TABLA_PELICULAS, null,null);
+        database.close();
     }
 }

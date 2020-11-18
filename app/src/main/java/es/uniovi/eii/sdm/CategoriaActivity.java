@@ -10,7 +10,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import es.uniovi.eii.sdm.modelo.Categoria;
-
+@SuppressWarnings("SpellCheckingInspection")
 public class CategoriaActivity extends AppCompatActivity {
 
     @Override

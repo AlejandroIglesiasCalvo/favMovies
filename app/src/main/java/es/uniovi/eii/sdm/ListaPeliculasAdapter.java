@@ -15,7 +15,7 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 import es.uniovi.eii.sdm.modelo.Pelicula;
-
+@SuppressWarnings("SpellCheckingInspection")
 public class ListaPeliculasAdapter extends RecyclerView.Adapter<ListaPeliculasAdapter.PeliculaViewHolder> {
 
     // Interfaz para manejar el evento click sobre un elemento

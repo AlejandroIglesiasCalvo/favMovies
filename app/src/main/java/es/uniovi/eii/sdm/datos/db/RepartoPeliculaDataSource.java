@@ -11,6 +11,7 @@ import java.util.List;
 
 import es.uniovi.eii.sdm.modelo.RepartoPelicula;
 
+@SuppressWarnings("SpellCheckingInspection")
 public class RepartoPeliculaDataSource {
 
     private SQLiteDatabase database;

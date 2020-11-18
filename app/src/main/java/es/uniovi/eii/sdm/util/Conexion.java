@@ -3,7 +3,7 @@ package es.uniovi.eii.sdm.util;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-
+@SuppressWarnings("SpellCheckingInspection")
 public class Conexion {
     private Context mContexto;
 

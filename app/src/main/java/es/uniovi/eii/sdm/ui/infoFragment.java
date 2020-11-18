@@ -15,7 +15,7 @@ import com.squareup.picasso.Picasso;
 
 import es.uniovi.eii.sdm.R;
 
-
+@SuppressWarnings("SpellCheckingInspection")
 public class infoFragment extends Fragment {
 
     public static final String ESTRENO = "estreno";

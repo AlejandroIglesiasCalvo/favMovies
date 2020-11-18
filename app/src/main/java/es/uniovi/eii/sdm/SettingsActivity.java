@@ -8,7 +8,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceManager;
-
+@SuppressWarnings("SpellCheckingInspection")
 public class SettingsActivity extends AppCompatActivity {
     SharedPreferences sharedPreferences;
     String name;

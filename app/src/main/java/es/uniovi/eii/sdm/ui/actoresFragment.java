@@ -20,7 +20,7 @@ import es.uniovi.eii.sdm.R;
 import es.uniovi.eii.sdm.datos.db.ActoresDataSource;
 import es.uniovi.eii.sdm.modelo.Actor;
 
-
+@SuppressWarnings("SpellCheckingInspection")
 public class actoresFragment extends Fragment {
 
     public static final String ACTORES = "actores";
@@ -45,10 +45,10 @@ public class actoresFragment extends Fragment {
         int id_pelicula = args.getInt("id_pelicula");
 
         //Creamos un películas data source para llamar al método que por SQL nos localizará el reparto
-        ActoresDataSource actoresDataSource = new ActoresDataSource(root.getContext());
-        actoresDataSource.open();
-        listaActores = actoresDataSource.getFilteredActorss(id_pelicula);
-        actoresDataSource.close();
+//        ActoresDataSource actoresDataSource = new ActoresDataSource(root.getContext());
+//        actoresDataSource.open();
+//        listaActores = actoresDataSource.getFilteredActorss(id_pelicula);
+//        actoresDataSource.close();
 
         // Definición de onclik del actor
         ListaActoresAdapter laAdapter = new ListaActoresAdapter(listaActores,

@@ -47,7 +47,7 @@ import static es.uniovi.eii.sdm.remote.ApiUtils.API_KEY;
 import static es.uniovi.eii.sdm.remote.ApiUtils.LANGUAGE;
 import static es.uniovi.eii.sdm.remote.ApiUtils.createThemoviedbApi;
 
-
+@SuppressWarnings("SpellCheckingInspection")
 public class MainRecycler extends AppCompatActivity {
     public static String filtrocategoria = null;
     RecyclerView listaPeliView;
@@ -94,17 +94,7 @@ public class MainRecycler extends AppCompatActivity {
                         listaPeliView = (RecyclerView) findViewById(R.id.recycler);
                         listaPeliView.setHasFixedSize(true);
 
-                        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
-                        listaPeliView.setLayoutManager(layoutManager);
-
-                        ListaPeliculasAdapter lpAdapter = new ListaPeliculasAdapter(ListaPeli,
-                                new ListaPeliculasAdapter.OnItemClickListener() {
-                                    @Override
-                                    public void onItemClick(Pelicula peli) {
-                                        clikonIntem(peli);
-                                    }
-                                });
-                        listaPeliView.setAdapter(lpAdapter);
+                        mostarVistaPeliculas();
 
 
                         break;
@@ -121,19 +111,7 @@ public class MainRecycler extends AppCompatActivity {
         });
     }
 
-    protected void cargarView() {
-        PeliculasDataSource peliculasDataSource = new PeliculasDataSource(getApplicationContext());
-        peliculasDataSource.open();
-        if (filtrocategoria == null) {
-            ListaPeli = peliculasDataSource.getAllValorations();
-        } else {
-            ListaPeli = peliculasDataSource.getFilteredValorations(filtrocategoria);
-        }
-
-        peliculasDataSource.close();
-        listaPeliView = (RecyclerView) findViewById(R.id.recycler);
-        listaPeliView.setHasFixedSize(true);
-
+    private void mostarVistaPeliculas() {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         listaPeliView.setLayoutManager(layoutManager);
 
@@ -145,6 +123,22 @@ public class MainRecycler extends AppCompatActivity {
                     }
                 });
         listaPeliView.setAdapter(lpAdapter);
+    }
+
+    protected void cargarBD() {
+        PeliculasDataSource peliculasDataSource = new PeliculasDataSource(getApplicationContext());
+        peliculasDataSource.open();
+//        if (filtrocategoria == null) {
+            ListaPeli = peliculasDataSource.getAllValorations();
+//        } else {
+//            ListaPeli = peliculasDataSource.getFilteredValorations(filtrocategoria);
+//        }
+
+        peliculasDataSource.close();
+//        listaPeliView = (RecyclerView) findViewById(R.id.recycler);
+//        listaPeliView.setHasFixedSize(true);
+
+        mostarVistaPeliculas();
     }
 
     public void clikonIntem(Pelicula peli) {
@@ -268,7 +262,7 @@ public class MainRecycler extends AppCompatActivity {
             //Y cargamos el recyclerview por primera vez.
             //Este método ya no tiene sentido llamarlo desde el onCreate u onResume, pues necesitamos asegurarnos
             //de haber cargado la base de datos antes de lanzarlo.
-            cargarView();
+            cargarBD();
         }
 
         protected void cargarPeliculas() {
